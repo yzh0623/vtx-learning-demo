@@ -1,0 +1,26 @@
+server: # 服务器
+   name: buried_vtx_demo # 当前服务名称
+   active: master
+   port: 8091 # 开放端口
+   context: vtx # 上下文
+   timeout: 120 # eventbus超时时间
+   cron: 30000
+   http:
+      header: # header获取到的变量
+      - x-requested-with
+      - Access-Control-Allow-Origin
+      - Access-Control-Allow-Header
+      - origin
+      - Content-Type
+      - accept
+      - phSessionToken
+   event-bus:
+      timeout: 10000 # 毫秒
+thread: # 线程配置
+   deploy:
+      init: 16 # 初始化部署线程数
+      max-size: 64 # 最大部署线程数
+      pool-name: vtx-thread-pool # 线程池名称
+   worker: 64 # 程序工作线程数
+   init-pool-size: 32 # 阻塞线程数量，默认20
+   eventloop-pool-size: 128 # Event Loop线程的数量

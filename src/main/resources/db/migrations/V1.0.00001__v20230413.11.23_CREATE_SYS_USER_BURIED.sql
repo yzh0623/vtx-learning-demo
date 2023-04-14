@@ -1,0 +1,22 @@
+CREATE TABLE `sys_user_buried` (
+  `ID` varchar(32) COLLATE utf8_bin NOT NULL COMMENT '主键UUID',
+  `IP` varchar(15) COLLATE utf8_bin NOT NULL COMMENT 'IP地址',
+  `URI` varchar(128) COLLATE utf8_bin NOT NULL COMMENT '访问地址',
+  `SYS_CODE` varchar(45) COLLATE utf8_bin NOT NULL COMMENT '系统编码（例如：abc）',
+  `SSXT` varchar(45) COLLATE utf8_bin NOT NULL COMMENT '模块（后续用于统计）',
+  `BUZZ_ID` text COLLATE utf8_bin COMMENT '业务id',
+  `ACCESS_DATE` varchar(20) COLLATE utf8_bin NOT NULL COMMENT '访问时间',
+  `TYPE` varchar(20) COLLATE utf8_bin NOT NULL COMMENT '访问端口：pc\\wechat\\app',
+  `DURATION_TIME` bigint DEFAULT NULL COMMENT '持续时间（ms）',
+  `OPER_TYPE` varchar(20) COLLATE utf8_bin NOT NULL DEFAULT 'view' COMMENT '操作类型：view（浏览）、click（操作）',
+  `ANALYSIS_LABEL` text COLLATE utf8_bin COMMENT '分析标签（随意输入，后续用于统计）',
+  `UID` bigint DEFAULT NULL COMMENT '用户id',
+  PRIMARY KEY (`ID`),
+  UNIQUE KEY `ID_UNIQUE` (`ID`),
+  KEY `IDX_SSXT_DATE` (`SYS_CODE`,`ACCESS_DATE`,`SSXT`),
+  KEY `IDX_OPER_TYPE` (`SYS_CODE`,`OPER_TYPE`,`SSXT`),
+  KEY `IDX_TYPE` (`SYS_CODE`,`TYPE`,`SSXT`),
+  KEY `IDX_SSXT_URI` (`SYS_CODE`,`URI`,`SSXT`),
+  KEY `IDX_IP_URI` (`SYS_CODE`,`IP`,`SSXT`),
+  KEY `IDX_USERID` (`SYS_CODE`,`UID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='用户信息埋点表';

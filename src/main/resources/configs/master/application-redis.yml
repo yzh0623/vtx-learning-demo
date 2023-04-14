@@ -1,0 +1,7 @@
+redis: # redis配置
+   max-pool-size: 6000 # 线程池最大线程数
+   max-pool-waiting: -1 # 最大线程池等待时间
+   connection-string: redis://127.0.0.1:6379/7 # redis连接地址
+   pool-recycle-timeout: 5000 # 线程池回收超时
+   batch-num: 5000 # 批次处理条数
+   max-waiting-handlers: 7000 # 等待操作

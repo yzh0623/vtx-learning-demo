@@ -1,0 +1,35 @@
+datasource: # 数据库配置
+   host: 127.0.0.1 #数据库地址
+   port: 3506 #数据库端口
+   database-name: tools #操作库名称
+   use-unicode: true #是否使用unicode编码
+   character-encoding: utf8 #文字编码
+   ssl-enable: false # 是否使用安全连接
+   server-timezone: UTC # 指定时区
+   url-head: 'jdbc:mysql:' #jdbc连接头
+   driver-class-name: com.mysql.cj.jdbc.Driver #jdbc驱动类型
+   jooq-name: org.jooq.meta.mysql.MySQLDatabase #数据库方言
+   package-path: io.kida.model # jooq映射路径
+   username: yzh #数据库登录用户名
+   password: '0623' # 数据库登录密码
+   hikari: # hikariCP线程池处理参数（略）
+      is-auto-commit: true
+      allow-pool-suspension: true
+      connection-test-query: SELECT 1
+      pool-name: vtx_hikari_pool
+      minimum-idle: 20
+      maximum-pool-size: 200
+      idle-timeout: 180000
+      connection-timeout: 60000
+      cache-prep-stmts: true
+      prep-stmt-cache-size: 128
+      prep-stmt-cache-sql-limit: 256
+      use-server-prep-stmts: true
+      use-local-session-state: true
+      use-local-transaction-state: true
+      rewrite-batched-statements: true
+      cache-result-set-metadata: true
+      cache-server-configuration: true
+      elide-set-auto-commits: true
+      maintain-time-stats: false
+      allow-public-key-retrieval: true
